@@ -1,0 +1,16 @@
+import tensorflow as tf
+a  = tf.multiply(3, 3)
+a1 = tf.multiply(a, 3)
+b  = tf.multiply(5, 5)
+b1 = tf.multiply(b, 5)
+c  = tf.multiply(3, 3)
+c1 = tf.multiply(c, 5)
+d  = tf.subtract(5,3)
+e  = tf.multiply(c1, d)
+f  = tf.add(a1,b1)
+g  = tf.add(a1,e)
+
+with tf.Session() as sess:
+    writer = tf.summary.FileWriter("/tmp/tboard/output", sess.graph)
+    print(sess.run(g))
+    writer.close()
