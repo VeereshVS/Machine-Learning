@@ -1,0 +1,39 @@
+import tensorflow as tf
+x=tf.constant([1.0,2.0,3.0])
+y=tf.constant([2.0,4.0,6.0])
+
+mn_a,var_a = tf.nn.moments(x,[0])
+mn_b,var_b = tf.nn.moments(y,[0])
+
+a = tf.subtract(x[0],mn_a)
+b = tf.subtract(x[1],mn_a)
+c = tf.subtract(x[2],mn_a)
+
+d = tf.subtract(y[0],mn_b)
+e = tf.subtract(y[1],mn_b)
+f = tf.subtract(y[2],mn_b)
+
+g=tf.multiply(a,d)
+h=tf.multiply(b,e)
+i=tf.multiply(c,f)
+
+j=tf.add(g,h)
+covar=tf.add(j,i)
+
+xy_c= tf.divide(covar,var_a)
+
+k=tf.multiply(xy_c,mn_a)
+xy_m= tf.subtract(k,mn_b)
+
+
+
+with tf.Session() as sess:
+    print(sess.run(mn_a))
+    print(sess.run(var_a))
+    print(sess.run(mn_b))
+    print(sess.run(var_b))
+    print(sess.run(covar))
+    print(sess.run(xy_c))
+    print(sess.run(xy_m))
+    
+    
